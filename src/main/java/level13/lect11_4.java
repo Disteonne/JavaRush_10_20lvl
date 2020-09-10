@@ -8,7 +8,7 @@ public class lect11_4 {
         SimpleObject<T> getInstance();
     }
    static class StrObject<T> implements SimpleObject<T>{
-        @Override
+
        public SimpleObject<T> getInstance() {
            return null;
        }

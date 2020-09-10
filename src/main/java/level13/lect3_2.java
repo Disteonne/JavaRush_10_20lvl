@@ -14,39 +14,39 @@ public class lect3_2 {
         void beEaten();
     }
     class Cat implements Movable,Eat,Edible{
-        @Override
+
         public void move() {
 
         }
-        @Override
+
         public void eat() {
 
         }
-        @Override
+
         public void beEaten() {
 
         }
     }
     class Mouse implements Eat,Edible,Movable{
-        @Override
+
         public void move() {
 
         }
-        @Override
+
         public void eat() {
 
         }
-        @Override
+
         public void beEaten() {
 
         }
     }
     class Dog implements Eat,Movable{
-        @Override
+
         public void move() {
 
         }
-        @Override
+
         public void eat() {
 
         }
