@@ -8,6 +8,7 @@ public class Solution3 {
     private static boolean isStoped=false;
     public static void main(String[] args) {
        CountDown countDown=new CountDown(4);
+       //countDown.start(); выдаст исключение IllegalThreadStateExceprion т.к. один и тот же потом вызыв дважды
 
 
     }
