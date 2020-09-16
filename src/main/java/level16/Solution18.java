@@ -19,8 +19,8 @@ public class Solution18 {
             list.add("Убийство врагов");
         }
 
-        protected Gamer gamer1=new Gamer("Ivanov",15);
-        protected Gamer gamer2=new Gamer("Petrov",6);
+        protected Gamer gamer1=new Gamer("Ivanov",101);
+        protected Gamer gamer2=new Gamer("Petrov",48);
         protected Gamer gamer3=new Gamer("Sidorov",21);
 
         @Override
@@ -48,22 +48,23 @@ public class Solution18 {
         public void run() {
             boolean flag=true;
 
-                for (int i = 0; i < OnlineGame.list.size(); i++) {
+                for (int i = 0; i < OnlineGame.list.size()+1; i++) {
                     if(OnlineGame.isWinnerFound){
-
                     }
-                    else if(count==4){
+                    else if(i==4){
                         System.out.println(Thread.currentThread().getName()+" winner");
                         OnlineGame.isWinnerFound=true;
                     }
                     else {
                         try {
+
                             Thread.sleep(1000/rating);
                             System.out.println(getName()+" "+OnlineGame.list.get(i));
-                            count++;
+                            //count++; //БАГ!!!!!!!
                         }catch (InterruptedException e){
                                 System.out.println(getName()+" проиграл");
                         }
+
                     }
                 }
 
