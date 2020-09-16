@@ -8,8 +8,9 @@ public class IMF {
 
     public static  IMF getImf() {
         synchronized (IMF.class) {
-            if (imf != null) { //ПОЧЕМУ ТАК???
-                return new IMF();
+            if (imf == null) { //ПОЧЕМУ ТАК???
+                imf=new IMF();
+                return imf;
             } else
                 return imf;
         }
