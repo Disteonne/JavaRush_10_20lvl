@@ -8,8 +8,8 @@ public class Solution1 {
     public static int[] testArray=new int[1000];
     public static int temp;
     static {
-        for (int i = 0; i < Solution1.testArray.length; i++) {
-            testArray[i]=i;
+        for (int k = 0; k < Solution1.testArray.length; k++) {
+            testArray[k]=k;
         }
     }
     public static void main(String[] args) throws InterruptedException {
@@ -17,7 +17,9 @@ public class Solution1 {
         for (int i = 1000-1; i >=0 ; i--) {
         stringBuffer.append(i).append(" ");
         }
+
         initThreads();
+
         StringBuffer result=new StringBuffer();
         for (int i = 0; i < testArray.length; i++) {
             result.append(testArray[i]).append(" ");
@@ -26,7 +28,8 @@ public class Solution1 {
         System.out.println((result.toString()).equals(stringBuffer.toString()));
 
     }
-    public static void sort(){
+    public static synchronized void sort(){
+
         for (int i = 0; i < testArray.length-1; i++) {
             for (int j = i+1; j < testArray.length; j++) {
                if(testArray[j]>testArray[i]){
@@ -36,6 +39,8 @@ public class Solution1 {
                }
             }
         }
+
+
     }
     public static void  initThreads() throws InterruptedException{
         List<Thread> threadList=new ArrayList<Thread>();
