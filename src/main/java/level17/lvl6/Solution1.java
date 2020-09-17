@@ -11,7 +11,7 @@ public class Solution1 {
 
         @Override
         public void run() {
-            int thisProposal=proposal;
+            int thisProposal=proposal; //=0
             while (proposal<10){
                 if(proposal==9){
                     Thread.yield();
