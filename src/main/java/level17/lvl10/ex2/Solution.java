@@ -1,4 +1,4 @@
-package level17.lvl10.ex1;
+package level17.lvl10.ex2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,38 +75,95 @@ public class Solution {
 
         public static void addActions(String addInfo) throws ParseException {
             String str[] = addInfo.split(" ");
+            /*
+            ArrayList<String> list1=new ArrayList<String>();
+            for (int i = 0; i < str.length; i++) {
+                list1.add(str[i]);
+            }
+
+             */
+
+            //String str1[]=new String[3];
 
             if (str[0].equals("-c")) {
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
-                Date date = dateFormat.parse(str[3]);
-                Person person = new Person(str[1], str[2], date);
-                allPeople.add(person);
-                System.out.println("id: " + (--Solution.id));
-            }  if (str[0].equals("-d")) {
-                //String str[] = addInfo.split(" ");
-                removeListIndex(Integer.parseInt(str[1]));
-            }  if (str[0].equals("-u")) {
-                //String str[] = addInfo.split(" ");
-                LinkedList<Person> linkedList=new LinkedList<Person>();
-                linkedList.addAll(allPeople);
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
-                Date date = dateFormat.parse(str[4]);
-                int idPeople = Integer.parseInt(str[1]);
-                for (Map.Entry<Integer,String> pair: listId.entrySet()
-                     ) {
-                    if(pair.getKey()==idPeople){
-                        listId.remove(idPeople);
-                        DateFormat formatter = new SimpleDateFormat("dd-MMMM-yyy", Locale.ENGLISH);
-                        listId.put(idPeople,str[2]+" "+str[3]+" "+formatter.format(date));
-                    }
+                int count= (str.length-1)/3;
+                int k=0;
+                ArrayList<String> list2=new ArrayList<String>();
+                list2.addAll(Arrays.asList(str));
+                while (k<count) {
+
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
+                    Date date = dateFormat.parse(list2.get(3+3*k));
+                    Person person = new Person(list2.get(1+3*k), list2.get(2+3*k), date);
+                    allPeople.add(person);
+                    person=null;
+                    int index=Solution.id-1;
+                    System.out.println("id: " +index);
+                    /*
+                    list2.remove(1+3*k);
+                    list2.remove(2+3*k);
+                    list2.remove(3+3*k);
+
+                     */
+                    k++;
                 }
-                linkedList.set(idPeople,new Person(str[2], str[3], date));
-                allPeople.clear();
-                allPeople.addAll(linkedList);
+            }  if (str[0].equals("-d")) {
+                int count=(str.length-1);
+                int k=0;
+                ArrayList<String> list2=new ArrayList<String>();
+                for (int i = 0; i < str.length; i++) {
+                    list2.add(str[i]);
+                }
+                //String str[] = addInfo.split(" ");
+                while (k<count) {
+                    removeListIndex(Integer.parseInt(list2.get(1+k)));
+                   // list2.remove(1);
+                    k++;
+                }
+            }  if (str[0].equals("-u")) {  //ConcurrentModificationException
+                int count= (str.length-1)/4;
+                int k=0;
+                ArrayList<String> list2=new ArrayList<String>();
+                for (int i = 0; i < str.length; i++) {
+                    list2.add(str[i]);
+                }
+                //String str1[] = addInfo.split(" ");
+                while (k<count) {
+                    LinkedList<Person> linkedList = new LinkedList<Person>();
+                    linkedList.addAll(allPeople);
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
+                    Date date = dateFormat.parse(list2.get(4+4*k));
+                    int idPeople = Integer.parseInt(list2.get(1+4*k));
+                    try {
+                        for (Map.Entry<Integer, String> pair : listId.entrySet()
+                        ) {
+                            if (pair.getKey() == idPeople) {
+                                listId.remove(idPeople);
+                                DateFormat formatter = new SimpleDateFormat("dd-MMMM-yyy", Locale.ENGLISH);
+                                listId.put(idPeople, list2.get(2 + 4 * k) + " " + list2.get(3 + 4 * k) + " " + formatter.format(date));
+                            }
+                        }
+                    }catch (ConcurrentModificationException e){
+
+                    }
+                    linkedList.set(idPeople, new Person(list2.get(2+4*k), list2.get(3+4*k), date));
+                    allPeople.clear();
+                    allPeople.addAll(linkedList);
+                    k++;
+                }
                 //allPeople.add(idPeople, new Person(str[2], str[3], date));
             } if (str[0].equals("-i")) {
-                //String str[] = addInfo.split(" ");
-                printInfo(Integer.parseInt(str[1]));
+                ArrayList<String> list2=new ArrayList<String>();
+                for (int i = 0; i < str.length; i++) {
+                    list2.add(str[i]);
+                }
+                int count= (str.length-1);
+                int k=0;
+                        while (k<count) {
+                            printInfo(Integer.parseInt(list2.get(1)));
+                            k++;
+                            list2.remove(1);
+                        }
 
             }
         }
